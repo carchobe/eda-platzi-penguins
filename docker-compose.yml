@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+
+  jp:
+    build: ./
+    restart: unless-stopped
+    container_name: eda-penguins
+    ports:
+      - 8888:8888
+    entrypoint:
+      jupyter lab --ip='0.0.0.0' --no-browser --allow-root --IdentityProvider.token='' --PasswordIdentityProvider.hashed_password=''
+    volumes:
+      - jpdata:/app
+
+volumes:
+  jpdata:
+    name: jpdata
